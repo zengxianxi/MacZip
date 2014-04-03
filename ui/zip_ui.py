@@ -12,6 +12,7 @@ __author__ = 'zengxianxi'
 
 win_options = {"width": 430, "height": 320, "top": 120}
 
+
 class Application(Frame):
     """
     压缩文件的主显示窗口
@@ -22,7 +23,7 @@ class Application(Frame):
         self.file_opt = {"defaultextension": ".zip",
                          "initialfile": datas["zipName"],
                          "initialdir": datas["curdir"],
-                         "title": u"压缩为：",
+                         "title": "压缩为：",
                          "parent": self}
         self.dst_zip = StringVar()
         self.dst_zip.set(datas["curdir"] + os.sep + datas["zipName"] + ".zip")
@@ -50,8 +51,8 @@ class Application(Frame):
 
         #定义确定、取消按钮
         frame = Frame(self, padding=2)
-        Button(frame, text=u"取消", command=self.quit).pack(side=LEFT)
-        Button(frame, text=u"确定", command=self.exc_zip).pack()
+        Button(frame, text="取消", command=self.quit).pack(side=LEFT)
+        Button(frame, text="确定", command=self.exc_zip).pack()
         frame.pack(side=RIGHT)
 
 
@@ -64,8 +65,8 @@ class Application(Frame):
 
     def createTab1(self, tab1):
         grid_column_options = {"pady": 5, "padx": "2"}
-        Label(tab1, text=u"压缩文件名").grid(row=0, column=0, sticky=W, **grid_column_options)
-        Button(tab1, text=u"浏览", command=self.asksaveasfilename).grid(row=0, column=1, sticky=E,
+        Label(tab1, text="压缩文件名").grid(row=0, column=0, sticky=W, **grid_column_options)
+        Button(tab1, text="浏览", command=self.asksaveasfilename).grid(row=0, column=1, sticky=E,
                                                                       **grid_column_options)
         Entry(tab1, textvariable=self.dst_zip, width=45).grid(row=1, column=0, columnspan=2, sticky=W,
                                                               **grid_column_options)
@@ -77,7 +78,7 @@ class Application(Frame):
         try:
             files = self.fileList.filenames
             dst = self.dst_zip.get()
-            zip_file(files, dst)
+            zip_file(self.file_opt["initialdir"], files, dst)
             self.quit()
         except Exception:
             pass
