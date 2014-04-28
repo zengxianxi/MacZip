@@ -30,7 +30,7 @@ if __name__ == "__main__":
     if not os.path.exists(dirname(logFile)):
         os.makedirs(dirname(logFile))
 
-    logging.basicConfig(level=logging.DEBUG,
+    logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
                         filename=logFile)

@@ -11,15 +11,26 @@ class ScrolledList(Frame):
         self.pack(expand=YES, fill=BOTH)
         self.makeWidgets(files)
 
-    def processEvent(selft, event):
-        if event.keysym == "Delete":
+    def processEvent(self, event):
+        print(event.keysym)
+        if event.keysym == "Delete" or event.keysym == "BackSpace":
             #处理删除
+            items = self.listbox.curselection()
+            for item in items:
+                print(item)
+                self.listbox.delete(item, item)
+                index = int(item)
+                if index < self.listbox.size():
+                    self.listbox.selection_set(index)
+                else:
+                    self.listbox.selection_set(index - 1);
             pass
 
 
     def makeWidgets(self, files):
         list = Listbox(self, relief=SUNKEN)
         list.bind("<Key>", self.processEvent)
+        list.bind()
 
         v_bar = Scrollbar(self)
         v_bar.config(command=list.yview)
